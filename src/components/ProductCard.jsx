@@ -4,10 +4,10 @@ import './ProductCard.css'
 
 const ProductCard = ({ producto, agregar }) => {
   return (
-    <div className={styles.card}>
-      <span className={styles.precio}>${producto.precio}</span>
-      <img src={`/assets/${producto.imagen}`} alt={producto.nombre} className={styles.img} />
-      <button className={styles.boton} onClick={() => agregar(producto)}>+</button>
+    <div className="card">
+      <span className="precio">${producto.precio}</span>
+      <img src="/"alt={producto.nombre} className="img" />
+      <button className="button" onClick={() => agregar(producto)}>+</button>
     </div>
   )
 }
