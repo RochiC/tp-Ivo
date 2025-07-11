@@ -2,8 +2,15 @@
   background-color: black;
   color: white;
   min-height: 100vh;
+  min-width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* o center si querés centrar también verticalmente */
+  align-items: center;
+
   padding: 20px;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .logo {

@@ -7,12 +7,12 @@ import './App.css';
 
 // Datos fijos productos (podés cambiar por imágenes reales en public/assets)
 const products = [
-  { id: 1, name: 'Coca Cola', price: 200, image: '/assets/coca.png' },
-  { id: 2, name: 'Sprite', price: 200, image: '/assets/sprite.png' },
-  { id: 3, name: 'Fanta', price: 200, image: '/assets/fanta.png' },
+  { id: 1, name: 'Coca Cola', price: 500, image: '/assets/coca.png' },
+  { id: 2, name: 'Sprite', price: 300, image: '/assets/sprite.png' },
+  { id: 3, name: 'Fanta', price: 400, image: '/assets/fanta.png' },
   { id: 4, name: 'Agua', price: 200, image: '/assets/agua.png' },
   { id: 5, name: 'Pepsi', price: 200, image: '/assets/pepsi.png' },
-  { id: 6, name: 'Limonada', price: 200, image: '/assets/limonada.png' },
+  { id: 6, name: 'Limonada', price: 600, image: '/assets/limonada.png' },
 ];
 
 function App() {
