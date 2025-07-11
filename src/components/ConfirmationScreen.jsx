@@ -1,14 +1,12 @@
-// src/components/ConfirmationScreen.jsx
-import React from 'react'
-import './ConfirmationScreen.css'
+import React from 'react';
+import './ConfirmationScreen.css';
 
 const ConfirmationScreen = () => {
   return (
-    <div className="confirm">
-      <h1>¡Compra realizada!</h1>
-      <p>Gracias por elegir REFR5SKO 🥤</p>
+    <div className="confirmation-screen">
+      <h2>¡Compra realizada con éxito!</h2>
     </div>
-  )
-}
+  );
+};
 
-export default ConfirmationScreen
+export default ConfirmationScreen;

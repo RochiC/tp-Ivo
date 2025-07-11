@@ -1,57 +1,86 @@
-// src/App.jsx
+import React, { useState } from 'react';
+import ProductCard from './components/ProductCard';
+import CartSummary from './components/CartSummary';
+import PaymentScreen from './components/PaymentScreen';
+import ConfirmationScreen from './components/ConfirmationScreen';
+import './App.css';
 
-import React, { useState } from 'react'
-import ProductCard from './components/ProductCard'
-import CartSummary from './components/CartSummary'
-import PaymentScreen from './components/PaymentScreen'
-import ConfirmationScreen from './components/ConfirmationScreen'
-
-const styles = {
-  app: '',
-  grid: ''
-}
-
-
-const productos = [
-  { id: 1, nombre: 'Coca-Cola', precio: 200, imagen: 'coca.png' },
-  { id: 2, nombre: 'Sprite', precio: 200, imagen: 'sprite.png' },
-  { id: 3, nombre: 'Fanta', precio: 200, imagen: 'fanta.png' },
-  { id: 4, nombre: 'Agua', precio: 200, imagen: 'agua.png' },
-  { id: 5, nombre: 'Pepsi', precio: 200, imagen: 'pepsi.png' },
-  { id: 6, nombre: 'Citrus', precio: 200, imagen: 'citrus.png' }
-]
+// Datos fijos productos (podés cambiar por imágenes reales en public/assets)
+const products = [
+  { id: 1, name: 'Coca Cola', price: 200, image: '/assets/coca.png' },
+  { id: 2, name: 'Sprite', price: 200, image: '/assets/sprite.png' },
+  { id: 3, name: 'Fanta', price: 200, image: '/assets/fanta.png' },
+  { id: 4, name: 'Agua', price: 200, image: '/assets/agua.png' },
+  { id: 5, name: 'Pepsi', price: 200, image: '/assets/pepsi.png' },
+  { id: 6, name: 'Limonada', price: 200, image: '/assets/limonada.png' },
+];
 
 function App() {
-  const [carrito, setCarrito] = useState([])
-  const [pantalla, setPantalla] = useState('productos') // productos | pago | confirmado
+  const [cart, setCart] = useState([]);
+  const [screen, setScreen] = useState('products'); // 'products', 'payment', 'confirmation'
 
-  const agregarAlCarrito = (producto) => {
-    setCarrito([...carrito, producto])
+  const handleAddToCart = (product) => {
+    setCart((prev) => {
+      const existing = prev.find((p) => p.id === product.id);
+      if (existing) {
+        return prev.map((p) =>
+          p.id === product.id ? { ...p, quantity: p.quantity + 1 } : p
+        );
+      }
+      return [...prev, { ...product, quantity: 1 }];
+    });
+  };
+
+  const handleComprar = () => {
+    setScreen('payment');
+  };
+
+  const handlePagar = () => {
+    setScreen('confirmation');
+    setCart([]); // vaciar carrito después de pagar
+  };
+
+  const handleVolver = () => {
+    setScreen('products');
+  };
+
+  if (screen === 'products') {
+    return (
+      <div className="app">
+        <img src="/refresko.png" alt="Refresko Logo" className="logo" />
+        <div className="grid">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAdd={handleAddToCart}
+            />
+          ))}
+        </div>
+        <CartSummary cart={cart} onComprar={handleComprar} />
+      </div>
+    );
   }
 
-  const total = carrito.reduce((acc, prod) => acc + prod.precio, 0)
+  if (screen === 'payment') {
+    const total = cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+    return (
+      <PaymentScreen
+        total={total}
+        onPagar={handlePagar}
+        onVolver={handleVolver}
+      />
+    );
+  }
 
-  return (
-    <div className={styles.app}>
-      {pantalla === 'productos' && (
-        <>
-          <div className={styles.grid}>
-            {productos.map(prod => (
-              <ProductCard key={prod.id} producto={prod} agregar={agregarAlCarrito} />
-            ))}
-          </div>
-          <CartSummary total={total} onComprar={() => setPantalla('pago')} />
-        </>
-      )}
-      {pantalla === 'pago' && (
-        <PaymentScreen total={total} onPagar={() => setPantalla('confirmado')} onVolver={() => setPantalla('productos')} />
-      )}
-      {pantalla === 'confirmado' && (
-        <ConfirmationScreen />
-      )}
-    </div>
-  )
+  if (screen === 'confirmation') {
+    return <ConfirmationScreen />;
+  }
+
+  return null;
 }
 
-export default App
-
+export default App;
