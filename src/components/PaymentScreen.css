@@ -1,47 +1,55 @@
-.pago {
-    background: #000;
-    color: white;
-    padding: 2rem;
-    text-align: center;
-    height: 100vh;
-  }
-  
-  .resumen {
-    background: #ccc;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    border-radius: 10px;
-  }
-  
-  .medio {
-    background: #c5ff00;
-    color: black;
-    margin: 10px;
-    padding: 0.8rem 1.5rem;
-    font-size: 16px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .botones {
-    margin-top: 20px;
-  }
-  
-  .pagar {
-    background: #ff00aa;
-    color: white;
-    margin-right: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-  }
-  
-  .volver {
-    background: #ff00aa;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-  }
-  
+.payment-screen {
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  padding: 30px;
+  text-align: center;
+  font-family: system-ui, sans-serif;
+}
+
+.payment-summary {
+  background-color: #cfcfcf;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.payment-method-btn {
+  background-color: #cece00;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px auto;
+  width: 80%;
+  font-size: 18px;
+  cursor: pointer;
+  display: block;
+}
+
+.payment-action-btn {
+  background-color: #ff0088;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 10px;
+  width: 40%;
+  font-size: 18px;
+  cursor: pointer;
+}
+.logo-top-right {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  max-width: 120px;
+}
